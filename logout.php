@@ -1,3 +1,4 @@
 <?php
-    $_SESSION['login']=false;
+    session_abort();
+    header("Location:login.php");
 ?>
