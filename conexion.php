@@ -1,9 +1,9 @@
 <?php
-    $host="";
-    $user="";
-    $pass="";
-    $bd="";
-    $table="";
+    $host="127.0.0.1";
+    $user="root";
+    $pass="1234";
+    $bd="test";
+    $table="user";
 
     $enlace = mysqli_connect($host,$user,$pass,$bd);
     if(!$enlace){
