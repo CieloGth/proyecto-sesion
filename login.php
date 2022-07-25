@@ -1,20 +1,27 @@
 <?php
-     session_start();
+    // print_r($_REQUEST);
+    // exit;     
+    session_start();
      $message="";
      if(count($_POST)>0) {
-         $con = mysqli_connect('127.0.0.1','root','','test') or die('Unable To connect');
-         $result = mysqli_query($con,"SELECT * FROM user WHERE nombre='".$_POST["usuario"]."' AND password='".$_POST["pasword"]."';");
+         $con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
+         $result = mysqli_query($con,"SELECT * FROM user WHERE usuario='" . $_POST["usuario"] . "' and password = '". md5($_POST["password"])."';");
          $row  = mysqli_fetch_array($result);
          if(is_array($row)) {
          $_SESSION["id"] = $row['id'];
-         $_SESSION["name"] = $row['name'];
-         } else {
+         $_SESSION["usuario"] = $row['usuario'];
+         $_SESSION["contraseña"] = $row['contraseña'];
+         $_SESSION["password"] = $row['password'];
+         $_SESSION['login']=true;
+         } 
+         else {
           $message = "Invalid Username or Password!";
          }
+        //  $_SESSION['login']==true;
      }
-     if(isset($_SESSION["id"])) {
-     header("Location:index.php");
-     }
+     if(isset($_SESSION["usuario"])) {
+        header("Location:index.php");
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +34,13 @@
 <body>
     <form name="form" method="post" action="">
         <div class="message"><?php if($message!="") { echo $message; }  ?></div>
-        <h3 align="center">Enter Login Details</h3>
+        <h3 text-align="center">Enter Login Details</h3>
         <p>Usuario: </p>
         <br>
-        <input type="text" name="usuario">
+        <input type="text" id="usuario" name="usuario">
         <br>
         <p>Contraseña: </p>
-        <input type="password" name="password">
+        <input type="password" id="password" name="password">
         <br><br>
         <input type="submit" name="submit" value="Submit">
         <input type="reset">
