@@ -1,4 +1,0 @@
-INSERT INTO `usuarios`(`id`, `nombre`, `apellido`, `usuario`, `email`, `contraseña`, `nacimiento`, `telefono`) VALUES ('1','ejemplo','example','ejemplo','ejemplo@servidor.com','ejemplo','0000-00-00','0000000000');
-INSERT INTO `usuarios`( `nombre`, `apellido`, `usuario`, `email`, `contraseña`, `nacimiento`, `telefono`) VALUES ('ejemplo2','example2','ejemplo2','ejemplo2@servidor.com','ejemplo2','0000-00-00','0000000000');
-INSERT INTO `usuarios` VALUES ('2','admin','empresa','admin','admin@miempresa.com','admin','2022-07-20','2222222222');
-INSERT INTO `usuarios` VALUES ('admin2','empresa','admin2','admin2@miempresa.com','admin2','2022-07-20','2222222222');
