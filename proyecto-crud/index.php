@@ -1,7 +1,7 @@
 <?php
-$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
+#$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
             
-$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
+#$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,19 +46,19 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                         <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
                         <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
                     </tr>
-                    <?php if($consulta->num_rows > 0):
-                        while($row = $consulta->fetch_assoc()) :
+                    <?php #if($consulta->num_rows > 0):
+                       # while($row = $consulta->fetch_assoc()) :
                             ?>
-                            <tr>
-                                <th scope="row"><?php echo $row["id"] ?></th>
-                                <td scope="row"><?php echo $row["nombre"]. " " . $row["apellido"] ?></td>
-                                <td scope="row"><?php echo $row["usuario"] ?></td>
-                                <td scope="row"><?php echo $row["email"] ?></td>
+                            <!--<tr>
+                                <th scope="row"><?php #echo $row["id"] ?></th>
+                                <td scope="row"><?php #echo $row["nombre"]. " " . $row["apellido"] ?></td>
+                                <td scope="row"><?php #echo $row["usuario"] ?></td>
+                                <td scope="row"><?php #echo $row["email"] ?></td>
                                 <td scope="row"><button type="button" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-eye"></i> Ver</button></td>
                                 <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
                                 <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
-                            </tr>
-                    <?php endwhile; endif; ?>
+                            </tr>-->
+                    <?php #endwhile; endif; ?>
                 </tbody>
                 <tfoot>
                 </tfoot>
@@ -132,11 +132,11 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col" class="d">Apellido</th>
-                    <th scope="col" class="d">Fecha de Nacimiento</th>
+                    <th scope="col" class="d" id="da">Apellido</th>
+                    <th scope="col" class="d" id="df">Fecha de Nacimiento</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Email</th>
-                    <th scope="col" class="d">Telefono</th>
+                    <th scope="col" class="d" id="dt">Telefono</th>
                     <th scope="col" colspan="3">Accion</th>
                 </tr>
             </thead>
@@ -144,12 +144,24 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                     <tr>
                         <th scope="row">000000</th>
                         <td scope="row">Prueba</td>
-                        <td scope="row" class="d">Pruebin la prueba</td>
-                        <td scope="row" class="d">0000-00-00</td>
+                        <td scope="row" class="d" id="da1">Pruebin la prueba</td>
+                        <td scope="row" class="d" id="df1">0000-00-00</td>
                         <td scope="row">pru</td>
                         <td scope="row">correo@prueba.com</td>
-                        <td scope="row" class="d">2222222222</td>
-                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-eye"></i> Ver</button></td>
+                        <td scope="row" class="d" id="dt1">2222222222</td>
+                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-info" onclick="lado(1)"><i class="fa-solid fa-eye"></i> Ver</button></td>
+                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
+                        <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">111111</th>
+                        <td scope="row">Prueba</td>
+                        <td scope="row" class="d" id="da2">Pruebin la prueba</td>
+                        <td scope="row" class="d" id="df2">1111-11-11</td>
+                        <td scope="row">pru</td>
+                        <td scope="row">correo@prueba.com</td>
+                        <td scope="row" class="d" id="dt2">3333333333</td>
+                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-info" onclick="lado(2)"><i class="fa-solid fa-eye"></i> Ver</button></td>
                         <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
                         <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
                     </tr>
@@ -186,6 +198,48 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                 </tfoot>
         </table>
     <script src="../js/bootstrap.min.js"></script>
+    <script>
+        let stl= false;
+        function lado(n){
+            
+            if(stl==false){
+                document.getElementById("da").style.visibility = 'visible';
+                document.getElementById("da").style.position = 'inherit';
+                document.getElementById("df").style.visibility = 'visible';
+                document.getElementById("df").style.position = 'inherit';
+                document.getElementById("dt").style.visibility = 'visible';
+                document.getElementById("dt").style.position = 'inherit';
+
+                document.getElementById("da"+n).style.visibility = 'visible';
+                document.getElementById("da"+n).style.position = 'inherit';
+                document.getElementById("df"+n).style.visibility = 'visible';
+                document.getElementById("df"+n).style.position = 'inherit';
+                document.getElementById("dt"+n).style.visibility = 'visible';
+                document.getElementById("dt"+n).style.position = 'inherit';
+                
+                stl=true;
+                console.log(stl);
+            }
+            else{
+                document.getElementById("da").style.visibility = 'collapse';
+                document.getElementById("da").style.position =   'fixed';
+                document.getElementById("df").style.visibility = 'collapse';
+                document.getElementById("df").style.position =   'fixed';
+                document.getElementById("dt").style.visibility = 'collapse';
+                document.getElementById("dt").style.position =   'fixed';
+
+                document.getElementById("da"+n).style.visibility = 'collapse';
+                document.getElementById("da"+n).style.position =   'fixed';
+                document.getElementById("df"+n).style.visibility = 'collapse';
+                document.getElementById("df"+n).style.position =   'fixed';
+                document.getElementById("dt"+n).style.visibility = 'collapse';
+                document.getElementById("dt"+n).style.position =   'fixed';
+                stl=false;
+                console.log(stl);
+
+            }
+        }
+    </script>
 
 </body>
 </html>
