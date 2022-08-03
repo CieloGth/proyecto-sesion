@@ -1,7 +1,7 @@
 <?php
-#$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
-            
-#$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
+$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
+           
+$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +17,8 @@
             visibility: collapse;
             position: fixed;
         }
-        .a {
-            visibility: visible;
-            position: inherit;
+        .b {
+            visibility: collapse;
         }
     </style>
 </head>
@@ -46,19 +45,19 @@
                         <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
                         <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
                     </tr>
-                    <?php #if($consulta->num_rows > 0):
-                       # while($row = $consulta->fetch_assoc()) :
+                    <?php if($consulta->num_rows > 0):
+                        while($row = $consulta->fetch_assoc()) :
                             ?>
-                            <!--<tr>
-                                <th scope="row"><?php #echo $row["id"] ?></th>
-                                <td scope="row"><?php #echo $row["nombre"]. " " . $row["apellido"] ?></td>
-                                <td scope="row"><?php #echo $row["usuario"] ?></td>
-                                <td scope="row"><?php #echo $row["email"] ?></td>
+                            <tr>
+                                <th scope="row"><?php echo $row["id"] ?></th>
+                                <td scope="row"><?php echo $row["nombre"]. " " . $row["apellido"] ?></td>
+                                <td scope="row"><?php echo $row["usuario"] ?></td>
+                                <td scope="row"><?php echo $row["email"] ?></td>
                                 <td scope="row"><button type="button" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-eye"></i> Ver</button></td>
                                 <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
                                 <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
-                            </tr>-->
-                    <?php #endwhile; endif; ?>
+                            </tr>
+                    <?php endwhile; endif; ?>
                 </tbody>
                 <tfoot>
                 </tfoot>
@@ -189,14 +188,42 @@
                         <td scope="row">Prueba</td>
                         <td scope="row">pru</td>
                         <td scope="row">correo@prueba.com</td>
-                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-eye"></i> Ver</button></td>
-                        <td scope="row"><button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button></td>
-                        <td scope="row"><a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a></td>
+                        <td scope="row">
+                            <button type="button" class="btn btn-sm btn-outline-info" onclick="bajo(1)"><i class="fa-solid fa-eye"></i> Ver</button>
+                            <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button>
+                            <a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a>
+                        </td>
+                    </tr>
+                    <tr id="bajo1" class="b">
+                        <th scope="row" id=""></th>
+                        <td scope="row" id="">Pruebin la prueba</td>
+                        <td scope="row" id="">0000-00-00</td>
+                        <td scope="row" id="">correo@prueba.com</td>
+                        <td scope="row" id="">2222222222</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">111111</th>
+                        <td scope="row">Prueba</td>
+                        <td scope="row">pru</td>
+                        <td scope="row">correo@prueba.com</td>
+                        <td scope="row">
+                            <button type="button" class="btn btn-sm btn-outline-info" onclick="bajo(2)"><i class="fa-solid fa-eye"></i> Ver</button>
+                            <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button>
+                            <a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a>
+                        </td>
+                    </tr>
+                    <tr id="bajo2" class="b">
+                        <th scope="row" id=""></th>
+                        <td scope="row" id="">Prueba Pruebin</td>
+                        <td scope="row">1111-11-11</td>
+                        <td scope="row" id="">correo@prueba.com</td>
+                        <td scope="row">3333333333</td>
                     </tr>
                 </tbody>
                 <tfoot>
                 </tfoot>
         </table>
+        <br>
     <script src="../js/bootstrap.min.js"></script>
     <script>
         let stl= false;
@@ -236,6 +263,21 @@
                 document.getElementById("dt"+n).style.position =   'fixed';
                 stl=false;
                 console.log(stl);
+
+            }
+        }
+
+        let stle=false;
+        function bajo(n){
+            if(stle==false){
+                document.getElementById("bajo"+n).style.visibility = 'visible';
+                stle=true;
+                console.log(stle);
+            }
+            else{
+                document.getElementById("bajo"+n).style.visibility = 'collapse';
+                stle=false;
+                console.log(stle);
 
             }
         }
