@@ -23,6 +23,13 @@
             background-color: white;
 
         }
+        .input-group-text {
+            background-color: #e9ecef00;
+            height: 3rem;
+        }
+        .input{
+            border-left: white;
+        }
     </style>
 </head>
 <body>
@@ -33,14 +40,18 @@
                 </div>
                 <h1>Bienvenido</h1>
                 <p>Usuario: </p>
-                <i class="fa-solid fa-user"></i>
-                <input type="text" name="usuario">
+                <div class="input-group mb-5">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" class="form-control form-control-lg mb-3" placeholder="Usuario" aria-describedby="basic-addon1" name="usuario">
+                </div>
                 <br>
                 <br>
                 <p>Contraseña: </p>
-                <i class="fa-solid fa-lock"></i>
-                <i class="fa-solid fa-unlock"></i>
-                <input type="password" name="password">
+                <div class="input-group mb-5">
+                    <span class="input-group-text" id="basic-addon2" style="position: absolute;position: inherit;"><i class="fa-solid fa-lock"></i></span>
+                    <span class="input-group-text" id="basic-addon3" style="position: absolute;position: inherit;"><i class="fa-solid fa-unlock"></i></span>
+                    <input type="text" class="form-control form-control-lg mb-3" placeholder="Usuario" aria-describedby="basic-addon2" name="usuario">
+                </div>
                 <br><br>
                 <input type="submit" name="submit" value="Submit">
                 <input type="reset">
