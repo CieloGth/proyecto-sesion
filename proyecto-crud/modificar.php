@@ -1,9 +1,41 @@
 <?php
-
+            $id=12;
             $con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
 
-            $consulta = mysqli_query($con,"SELECT * FROM usuarios WHERE id ='11';");
+            $consulta = mysqli_query($con,"SELECT * FROM usuarios WHERE id ='$id';");
 
+            if(count($_POST)>0) {
+                $ver=false;
+                $contraseña="";
+                function verificacion(){
+                    $is_int = filter_var($_POST["telefono"], FILTER_VALIDATE_INT);
+                    var_dump($is_int);
+                    $is_email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
+                    var_dump($is_email);
+                    if($_POST["cont"]==$_POST["cont2"]){
+                        echo"Igual";
+                    }
+                    else{
+                        echo"equivocado";
+                    }
+                    if($_POST["cont"]==$_POST["cont2"] && $is_int==true&&$is_email==true){
+                        echo"<br>Bien <br>";
+                        echo"Datos correctos para la conexion";
+                        global $ver;
+                        $ver=true;
+                    }
+                    else{
+                        echo"MAL";
+                    }
+                }
+                verificacion();
+                var_dump($ver);
+                if($ver==true){
+                    global $id;
+                    mysqli_query($con,"UPDATE usuarios SET nombre='".$_POST["nombre"]."', apellido='".$_POST["apellido"]."', usuario='".$_POST["usuario"]."', email='".$_POST["email"]."', contraseña='".$_POST["cont"]."', nacimiento='".$_POST["fecha"]."', telefono='".$_POST["telefono"]."' WHERE id='".$id."';");
+                    header('Location:index.php');
+                }
+            }
     
 ?>
 <!DOCTYPE html>
@@ -12,7 +44,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta</title>
+    <title>Modificar</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>

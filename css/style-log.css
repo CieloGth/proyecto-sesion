@@ -1,0 +1,15 @@
+body{
+    background-color: #d5c5c6ba;
+}
+.container{
+    text-align: center;
+    background-color: #d5c5c6;
+    box-shadow: 0px 0px 5px 1px #322b2b;
+}
+form{
+    background-color: white;
+}
+.input-group-text {
+    background-color: #e9ecef00;
+    height: 3rem;
+}
