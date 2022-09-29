@@ -1,7 +1,7 @@
 <?php
-$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
+#$con = mysqli_connect('localhost','root',null,'test',3310) or die('Unable To connect');
            
-$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
+#$consulta = mysqli_query($con,"SELECT * FROM usuarios;");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,7 +210,7 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                             <button type="button" class="btn btn-sm btn-outline-info" onclick="bajo(2)"><i class="fa-solid fa-eye"></i> Ver</button>
                             <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-file-pen"></i> Editar</button>
                             <a href="./baja.php" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</i></a>
-                        </td>
+/td>
                     </tr>
                     <tr id="bajo2" class="b">
                         <th scope="row" id=""></th>
@@ -223,6 +223,9 @@ $consulta = mysqli_query($con,"SELECT * FROM usuarios;");
                 <tfoot>
                 </tfoot>
         </table>
+        <br>
+        <br>
+        <hr>
         <br>
     <script src="../js/bootstrap.min.js"></script>
     <script>
